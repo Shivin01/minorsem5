@@ -1,4 +1,4 @@
-<div class="row" id="pin_show">
+<div id="pin_show">
   <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-default">
       <div class="panel-heading pin_image">
@@ -13,8 +13,7 @@
           <%= @pin.description %>
         </p>
       </div>
-    
-    <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+      <div id="jquery_jplayer_1" class="jp-jplayer"></div>
       <div id="jp_container_1" class="jp-audio">
         <div class="jp-type-single">
           <div class="jp-gui jp-interface">
@@ -46,8 +45,8 @@
           </div>
         </div>
       </div>
-		</div>
-      </div>
+    </div>
+    </div>
     </div>
       <div class="panel-footer">
         <div class="row">
@@ -93,19 +92,18 @@
           <%= social_share_button_tag("My Site") %>
         </div>
       </div>
-    </div>
-<script>
-  
+
+ <script>
   $(document).ready(function(){
     $("#jquery_jplayer_1").jPlayer({
       ready: function () {
         $(this).jPlayer("setMedia", {
-          mp3: " <%= @pin.mp3.url %>",
+          mp3: "<%= @pin.mp3.url %>",
         });
       },
       swfPath: "/js",
       supplied: "mp3"
     });
   });
-
 </script>
+  

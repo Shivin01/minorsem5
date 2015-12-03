@@ -41,4 +41,12 @@ class PostMailer < ActionMailer::Base
 			)
 	end
 
+	def post_downvote(user)
+		mail(to: user.email, 
+				from: "services@mydomain.com",
+				subject: "Post disliked by you",
+				body: "You have disliked a post"
+			)
+	end
+
 end

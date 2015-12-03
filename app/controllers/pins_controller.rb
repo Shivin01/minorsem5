@@ -11,7 +11,6 @@ class PinsController < ApplicationController
 		else
 			@pins = Pin.all
 		end
-
 	end
 	
 	def page
@@ -79,14 +78,17 @@ class PinsController < ApplicationController
 
 	def downvote
 		@user = current_user
-		#PostMailer.post_upvote(@user).deliver
-		#UpvoteMailer.upvote_created(current_user,@pin.user).deliver
+		#PostMailer.post_downvote(@user).deliver
+		#DownvoteMailer.downvote_created(current_user,@pin.user).deliver
 		@pin.downvote_by current_user
 		redirect_to :back
 	end
 
 	def download_File
 		send_file image.attachment.path
+	end
+	def show2
+		@user = current_user
 	end
 	private
 

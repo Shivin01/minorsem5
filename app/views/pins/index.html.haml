@@ -1,6 +1,7 @@
 = link_to 'Tags', page_pins_path, :class => "my-class"
 - if user_signed_in?
 	= link_to 'View profile', profile_users_path, :class => "my-class2"
+	= link_to 'View Liked Post', show2_pins_path, :class => "my-class2"
 = search_form_for @search do |f|
 	.field
 		= f.label :title_cont, "."

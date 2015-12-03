@@ -31,6 +31,7 @@ Rails.application.routes.draw do
    collection do
       get 'show1'
       get 'page'
+      get 'show2'
     end
   	member do
   		put "like",to: "pins#upvote"
