@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html></html>
 <head>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <title>Unplug</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true  %>
@@ -10,7 +11,8 @@
   <nav class="navbar navbar-default">
     <div class="container">
             <div class="navbar-brand">
-              <%= link_to image_tag('Logo3.png'), root_path %>
+              <!--<%= link_to image_tag('/assets/images/Logo3.png'),root_path %> -->
+              <%= link_to "Unplug", root_path %>
             </div>
               <!--<%= link_to image_tag('Logo3.png'), root_path %> -->
             <% if user_signed_in? %>
