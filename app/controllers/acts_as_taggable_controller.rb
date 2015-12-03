@@ -1,0 +1,2 @@
+class ActsAsTaggableController < ApplicationController
+end

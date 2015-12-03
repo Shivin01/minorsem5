@@ -1,0 +1,9 @@
+<h1> Friend's Activities </h1>
+<!-- <%= @activities.count %> -->
+<% @activities.each do |activity| %>
+	<div class="activity">
+    <%= activity.owner.name if activity.owner %>
+    
+    <%= render_activity activity %>
+</div>
+<% end %>

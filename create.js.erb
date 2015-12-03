@@ -1,0 +1,5 @@
+<% if @user.pin? %>
+	alert("Failed to upload pin: <%= j @painting.errors.full_messages.join(', ').html %>");
+<% else %>
+	$("#pins").append("<%= j render(@pin) %>");
+<% end %>

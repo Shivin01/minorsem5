@@ -1,0 +1,13 @@
+%h1
+= "User List"
+%br/
+%br/
+#users
+  - for user in @users
+    .user
+      %p
+        %strong
+          = user.name
+        = link_to "Add Friend",friends_path(:friend_id => user), :method => :post
+        
+       

@@ -1,0 +1,111 @@
+<div class="row" id="pin_show">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading pin_image">
+        <%= image_tag @pin.image.url %>
+      </div>
+
+      <div class="panel-body">
+        <h1>
+          <%= @pin.title %>
+        </h1>
+        <p class="description">
+          <%= @pin.description %>
+        </p>
+      </div>
+    
+    <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+      <div id="jp_container_1" class="jp-audio">
+        <div class="jp-type-single">
+          <div class="jp-gui jp-interface">
+            <ul class="jp-controls">
+              <li><a href="javascript:;" class="jp-play" tabindex="1">&#61515;</a></li>
+              <li><a href="javascript:;" class="jp-pause" tabindex="1">&#61516;</a></li>
+              <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">&#61480;</a></li>
+              <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">&#61478;</a></li>
+            </ul>
+
+            <div class="jp-progress">
+              <div class="jp-seek-bar">
+                <div class="jp-play-bar"></div>
+              </div>
+            </div>
+
+            <div class="jp-time-holder">
+              <div class="jp-current-time"></div>
+            </div>
+
+            <div class="jp-volume-bar">
+              <div class="jp-volume-bar-value"></div>
+            </div>
+
+            <div class="jp-no-solution">
+              <span>Update Required</span>
+              To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+            </div>
+          </div>
+        </div>
+      </div>
+		</div>
+      </div>
+    </div>
+      <div class="panel-footer">
+        <div class="row">
+          <div class="col-md-6">
+            <p class="user">
+              Submitted by
+              <%= @pin.user.name %>
+            </p>
+          </div>
+              <%= link_to like_pin_path(@pin), method: :put, class: "btn btn-default" do %>
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+                <%= @pin.get_upvotes.size %>
+              <% end %>
+              <%= link_to dislike_pin_path(@pin), method: :put, class: "btn btn-default" do %>
+                <span class="glyphicon glyphicon-thumbs-down"></span>
+                <%= @pin.get_downvotes.size %>
+              <% end %>
+              <br />
+               Liked by - <% @pin.votes_for.up.voters.each do |p| %> <%= p.name %> <br/> <% end %>
+               <br />
+               Disliked by - <% @pin.votes_for.down.voters.each do |p| %> <%= p.name %> <br/> <% end %>
+               <br />
+          <% if @pin.user == current_user %>
+            <%= link_to "Edit", edit_pin_path, class: "btn btn-default" %>
+            <%= link_to "Delete", pin_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
+            <% end %>
+          <div id="c"></div>
+          <h2 class="c_count">
+            <%= pluralize(@pin.cs.count, "comment") %>
+          </h2>
+          <% @cs.each do |c| %>
+            <div class="c">
+              <p class="username">
+                <%= c.user.name %>
+              </p>
+              <p class="content">
+                <%= c.content %>
+              </p>
+            </div>
+          <% end %>
+
+          <%= render 'c/form' %>
+          <%= social_share_button_tag("My Site") %>
+        </div>
+      </div>
+    </div>
+<script>
+  
+  $(document).ready(function(){
+    $("#jquery_jplayer_1").jPlayer({
+      ready: function () {
+        $(this).jPlayer("setMedia", {
+          mp3: " <%= @pin.mp3.url %>",
+        });
+      },
+      swfPath: "/js",
+      supplied: "mp3"
+    });
+  });
+
+</script>

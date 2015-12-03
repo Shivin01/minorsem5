@@ -1,0 +1,34 @@
+#pin_show.row
+	.col-md-8.col-md-offset-2
+		.panel.panel-default
+			.panel-heading.pin_image
+				= image_tag @pin.image.url
+			.panel-body
+				%h1= @pin.title
+				%p.description= @pin.description
+			.panel-footer
+				.row
+					.col-md-6
+						%p.user
+							Submitted by
+							= @pin.user.name
+					
+							= link_to like_pin_path(@pin), method: :put, class: "btn btn-default" do
+								%span.glyphicon.glyphicon-thumbs-up
+								= @pin.get_upvotes.size
+
+							= link_to dislike_pin_path(@pin), method: :put, class: "btn btn-default" do
+								%span.glyphicon.glyphicon-thumbs-down
+								= @pin.get_downvotes.size			
+					
+					#c
+					%h2.c_count= pluralize(@pin.cs.count, "comment")
+					- @cs.each do |c|
+						.c
+							%p.username= c.user.name
+							%p.content= c.content
+
+					= render 'c/form'
+
+					= social_share_button_tag("My Site")
+					
