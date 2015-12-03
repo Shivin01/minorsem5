@@ -9,8 +9,8 @@ class CsController < ApplicationController
 		@c.pin_id = @pin.id
 
 		if @c.save
-			CommentMailer.comment_created(current_user,@pin.user,@c.content).deliver
-			PostMailer.post_comment(@user).deliver
+			#CommentMailer.comment_created(current_user,@pin.user,@c.content).deliver
+			#PostMailer.post_comment(@user).deliver
 			redirect_to pin_path(@pin)
 		else
 			render 'new'

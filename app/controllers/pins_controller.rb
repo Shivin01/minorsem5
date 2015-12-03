@@ -40,7 +40,7 @@ class PinsController < ApplicationController
 		@pin = current_user.pins.build(pin_params)
 
 		if @pin.save
-				PostMailer.post_created(@user).deliver
+				#PostMailer.post_created(@user).deliver
 			redirect_to @pin, notice: "Pin was successfully created"
 		else
 			render 'new'
@@ -53,7 +53,7 @@ class PinsController < ApplicationController
 	def update
 		@user = current_user
 		if @pin.update(pin_params)
-			PostMailer.post_updated(@user).deliver
+			#PostMailer.post_updated(@user).deliver
 			redirect_to @pin, notice: "Pin was successfully updated"
 		else
 			render 'edit'
@@ -62,7 +62,7 @@ class PinsController < ApplicationController
 
 	def destroy
 		@user = current_user
-		PostMailer.post_destroy(@user).deliver
+		#PostMailer.post_destroy(@user).deliver
 
 		@pin.destroy
 		redirect_to root_path
@@ -70,16 +70,16 @@ class PinsController < ApplicationController
 
 	def upvote
 		@user = current_user
-		PostMailer.post_upvote(@user).deliver
-		UpvoteMailer.upvote_created(current_user,@pin.user).deliver
+		#PostMailer.post_upvote(@user).deliver
+		#UpvoteMailer.upvote_created(current_user,@pin.user).deliver
 		@pin.upvote_by current_user
 		redirect_to :back
 	end
 
 	def downvote
 		@user = current_user
-		PostMailer.post_downvote(@user).deliver
-		DownvoteMailer.downvote_created(current_user,@pin.user).deliver
+		#PostMailer.post_downvote(@user).deliver
+		#DownvoteMailer.downvote_created(current_user,@pin.user).deliver
 		@pin.downvote_by current_user
 		redirect_to :back
 	end
